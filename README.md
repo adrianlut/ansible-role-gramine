@@ -1,7 +1,7 @@
-Ansible Role: Intel_SGX_PWS
+Ansible Role: Gramine
 =========
 
-Ansible Role to install the Intel SGX Platform Software (Intel SGX PSW) and Intel SGX DCAP according to the Intel SGX Software Installation Guide For Linux OS
+Ansible Role to install the Gramine Library Operation System.
 
 Requirements
 ------------
@@ -12,20 +12,13 @@ Pre-requisites not be covered by Ansible or the role:
 Role Variables
 --------------
 
-The file `defaults/main.yml` defines the package that are being installed according to the Intel SGX Software Installation Guide.
-
-In the file `vars/main.yml` we additionally define the following two variables to allow you to control whether dev and debug packages will be installed:
-
-```
-install_sgx_debug: true # controls if debug packages will be installed, true by default
-install_sgx_dev: true # controls if development packages will be installed, true by default
-```
+The file `defaults/main.yml` defines the packages that must be installed according to the Gramine installation guide.
 
 Dependencies
 ------------
 
 Roles hosted on Galaxy and their parameters:
-- None
+- melhindi.intel_sgx_pws
 
 Example Playbook
 ----------------
@@ -34,7 +27,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: all
       roles:
-         - { role: melhindi.intel_sgx_pws }
+         - { role: adrianlut.gramine }
 
 License
 -------
@@ -48,7 +41,7 @@ To contribute to the development of this role the following setup is recommended
 
 ```
 # 1. Clone the repository with the expected role name:
-git clone git@github.com:melhindi/ansible-role-intel-sgx-pws.git melhindi.intel_sgx_pws
+git clone git@github.com:adrianlut/ansible-role-gramine.git adrianlut.gramine
 
 # 2. Initialize the virtual environment
 python3 -m venv .venv
