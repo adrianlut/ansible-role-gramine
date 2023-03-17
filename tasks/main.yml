@@ -1,0 +1,26 @@
+---
+# tasks file for intel_sgx_pws
+
+- name: Include variables
+  ansible.builtin.include_vars:
+    file: main.yml
+
+- name: Install Gramine Repo
+  block:
+    - name: Gramine Repo | download key
+      ansible.builtin.get_url:
+        url: https://packages.gramineproject.io/gramine-keyring.gpg
+        dest: /usr/share/keyrings/gramine-keyring.gpg
+      become: true
+    - name: Gramine Repo | add repo
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/gramine-keyring.gpg] https://packages.gramineproject.io/ {{ ansible_distribution_release }} main"
+        state: present
+
+- name: Install Gramine
+  ansible.builtin.apt:
+    name: "{{ gramine_packages }}"
+    state: present
+    update_cache: true
+    install_recommends: false
+  become: true
